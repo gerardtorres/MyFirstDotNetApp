@@ -28,7 +28,7 @@ jobs:
       - name: publish
         run: dotnet publish -c Release -o public
 
-      - name: Upload dev_config
+      - name: Upload public folder to artifacts
         uses: actions/upload-artifact@v3
         with:
           name: public_package
