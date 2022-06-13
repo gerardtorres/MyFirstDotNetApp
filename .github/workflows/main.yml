@@ -16,13 +16,23 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      
       - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
         uses: actions/setup-dotnet@v2
         with:
           dotnet-version: ${{ matrix.dotnet-version }}
+
       - name: Install dependencies
         run: dotnet restore
+
       - name: Build
         run: dotnet build --configuration Release
+
       - name: publish
         run: dotnet publish -c Release -o public
+
+      - name: Upload dev_config
+        uses: actions/upload-artifact@v3
+        with:
+          name: public_package
+          path: public  
