@@ -40,5 +40,5 @@ jobs:
       - name: Copy public files to target directory
         run: copy .\public\* C:\inetpub\wwwroot\. -Force
 
-      - name: Stop iis
-        run: iisreset /stop
+      - name: Start iis
+        run: iisreset /start
