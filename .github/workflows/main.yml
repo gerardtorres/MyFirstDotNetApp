@@ -34,5 +34,11 @@ jobs:
           name: public_package
           path: public  
       
+      - name: Stop iis
+        run: iisreset /stop
+
       - name: Copy public files to target directory
-        run: copy /Y .\public\* C:\inetpub\wwwroot\.
+        run: copy .\public\* C:\inetpub\wwwroot\. -Force
+
+      - name: Stop iis
+        run: iisreset /stop
