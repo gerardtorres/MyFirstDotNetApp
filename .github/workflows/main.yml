@@ -51,3 +51,20 @@ jobs:
 
       - name: Start iis
         run: iisreset /start
+
+
+  uploadArtifact:
+    needs: build
+    runs-on: self-hosted
+    steps:
+      - name: Download the public folder
+        uses: actions/download-artifact@v3
+        with:
+          name: public_package  
+      - name: publish to artifactory
+        uses: advancedcsg-open/action-jfrog-cli@master
+        with:
+          url: 'https://company.jfrog.io/'
+          credentials type: 'apikey'
+          apikey: ${{ secrets.JFROGKEY }}
+          args: u ".\public\*" "/mu/repo/path/" --recursive=true --build-name=myawesomeapp          
