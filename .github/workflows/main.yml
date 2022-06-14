@@ -64,4 +64,4 @@ jobs:
       - name: publish to artifactory
         run: |
           zip public.zip ./*
-          curl -H ${{ secrets.JFROGKEY }} -T public.zip "https://gerardtorres.jfrog.io/artifactory/default-generic-local/package"
+          curl -H ${{ secrets.JFROGKEY }} -T public.zip "https://gerardtorres.jfrog.io/artifactory/default-generic-local/package.zip"
