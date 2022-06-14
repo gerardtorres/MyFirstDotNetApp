@@ -33,9 +33,17 @@ jobs:
         with:
           name: public_package
           path: public  
-      
+
+  deployment:
+    runs-on: self-hosted
+    steps:
       - name: Stop iis
         run: iisreset /stop
+
+      - name: Download the public folder
+        uses: actions/download-artifact@v3
+        with:
+          name: public_package  
 
       - name: Copy public files to target directory
         run: copy .\public\* C:\inetpub\wwwroot\. -Force
