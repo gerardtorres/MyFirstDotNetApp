@@ -67,4 +67,4 @@ jobs:
           url: 'https://company.jfrog.io/'
           credentials type: 'apikey'
           apikey: ${{ secrets.JFROGKEY }}
-          args: u ".\public\*" "/mu/repo/path/" --recursive=true --build-name=myawesomeapp          
+          args: u ".\public\*" "default-generic-local/" --recursive=true --build-name=myawesomeapp          
