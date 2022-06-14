@@ -62,4 +62,4 @@ jobs:
         with:
           name: public_package  
       - name: publish to artifactory
-        run: curl -H ${{ secrets.JFROGKEY }} -T ./public "https://gerardtorres.jfrog.io/artifactory/default-generic-local/package"
+        run: curl -H ${{ secrets.JFROGKEY }} -T ./public/* "https://gerardtorres.jfrog.io/artifactory/default-generic-local/package"
