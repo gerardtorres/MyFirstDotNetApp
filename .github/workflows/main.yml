@@ -63,5 +63,6 @@ jobs:
           name: public_package  
       - name: publish to artifactory
         run: |
+          filename="public"_$(https://gerardtorres.jfrog.io/artifactory/default-generic-local/date +%Y%m%d-%H%M%S).zip
           zip public.zip ./*
-          curl -H ${{ secrets.JFROGKEY }} -T public.zip "https://gerardtorres.jfrog.io/artifactory/default-generic-local/package.zip"
+          curl -H ${{ secrets.JFROGKEY }} -T public.zip $filename
