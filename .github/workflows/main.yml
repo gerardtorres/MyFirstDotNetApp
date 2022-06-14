@@ -35,6 +35,7 @@ jobs:
           path: public  
 
   deployment:
+    needs: build
     runs-on: self-hosted
     steps:
       - name: Stop iis
