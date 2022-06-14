@@ -35,4 +35,4 @@ jobs:
           path: public  
       
       - name: Copy public files to target directory
-        run: copy .\public\* C:\inetpub\wwwroot\.
+        run: copy /Y .\public\* C:\inetpub\wwwroot\.
