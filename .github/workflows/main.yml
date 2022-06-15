@@ -35,7 +35,7 @@ jobs:
           path: public  
 
   deployment:
-    needs: build
+    needs: uploadArtifact
     runs-on: self-hosted
     steps:
       - name: Stop iis
@@ -44,7 +44,14 @@ jobs:
       - name: Download the public folder
         uses: actions/download-artifact@v3
         with:
-          name: public_package  
+          name: filename_str  
+      
+      - name: Download public archive
+        shell: pwsh
+        run: |
+          set /p filename=<filename.txt
+          curl -H ${{ secrets.JFROGKEY }} -O %filename%
+          Expand-Archive public* -DestinationPath .\public\*
 
       - name: Copy public files to target directory
         run: copy .\public\* C:\inetpub\wwwroot\. -Force
@@ -64,5 +71,12 @@ jobs:
       - name: publish to artifactory
         run: |
           filename="https://gerardtorres.jfrog.io/artifactory/default-generic-local/public"_$(date +%Y%m%d-%H%M%S).zip
+          filename > filename.txt
           zip public.zip ./*
           curl -H ${{ secrets.JFROGKEY }} -T public.zip $filename
+            - name: Create public artifact
+      - name: Upload file name
+        uses: actions/upload-artifact@v3
+        with:
+          name: filename_str
+          path: filename.txt  
