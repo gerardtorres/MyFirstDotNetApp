@@ -43,7 +43,7 @@ jobs:
       
       - name: Download public archive
         run: |
-          jf rt dl public_latest.zip public.zip
+          jf rt dl default-generic-local/public_latest.zip public.zip
           Expand-Archive -Path public.zip -DestinationPath .\public\*
 
       - name: Copy public files to target directory
