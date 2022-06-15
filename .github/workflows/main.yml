@@ -48,6 +48,7 @@ jobs:
       
       - name: Download public archive
         run: |
+          ls
           Expand-Archive -Path filename_str.zip -DestinationPath .
           $filename = Get-Content .\filename.txt -Raw 
           curl -H ${{ secrets.JFROGKEY }} -O $filename
