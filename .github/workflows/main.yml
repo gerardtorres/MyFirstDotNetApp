@@ -71,7 +71,7 @@ jobs:
       - name: publish to artifactory
         run: |
           filename="https://gerardtorres.jfrog.io/artifactory/default-generic-local/public"_$(date +%Y%m%d-%H%M%S).zip
-          filename > filename.txt
+          echo $filename > filename.txt
           zip public.zip ./*
           curl -H ${{ secrets.JFROGKEY }} -T public.zip $filename
             - name: Create public artifact
