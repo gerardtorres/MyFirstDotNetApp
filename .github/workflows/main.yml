@@ -51,7 +51,7 @@ jobs:
         run: |
           set /p filename=<filename.txt
           curl -H ${{ secrets.JFROGKEY }} -O %filename%
-          Expand-Archive public* -DestinationPath .\public\*
+          Expand-Archive -Path public*.zip -DestinationPath .\public\*
 
       - name: Copy public files to target directory
         run: copy .\public\* C:\inetpub\wwwroot\. -Force
