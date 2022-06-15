@@ -47,7 +47,6 @@ jobs:
           name: filename_str  
       
       - name: Download public archive
-        shell: pwsh
         run: |
           Expand-Archive -Path filename.zip -DestinationPath .
           $filename = Get-Content .\filename.txt -Raw 
