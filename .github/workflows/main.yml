@@ -49,7 +49,7 @@ jobs:
       - name: Download public archive
         run: |
           $filename = Get-Content .\filename.txt -Raw 
-          $jkey = ${{ secrets.JFROGKEY }} 
+          $jkey = Invoke-Expression ${{ secrets.JFROGKEY }} 
           curl -H $jkey -O $filename
           Expand-Archive -Path public*.zip -DestinationPath .\public\*
 
