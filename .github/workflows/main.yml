@@ -49,10 +49,7 @@ jobs:
       - name: Download public archive
         run: |
           $filename = Get-Content .\filename.txt -Raw 
-          $jkey = '"X-JFrog-Art-API"'+'="'+'${{ secrets.JFROGKEY }}'+'"'
-          $jkeyHash = @{$jkey}
-          echo $jkeyHash
-          curl -H $jkey -O $filename
+          jf rt dl $filename public.zip
           Expand-Archive -Path public*.zip -DestinationPath .\public\*
 
       - name: Copy public files to target directory
