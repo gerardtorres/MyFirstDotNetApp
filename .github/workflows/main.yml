@@ -50,8 +50,8 @@ jobs:
         shell: pwsh
         run: |
           Expand-Archive -Path filename.zip -DestinationPath .
-          set /p filename=<filename.txt
-          curl -H ${{ secrets.JFROGKEY }} -O %filename%
+          $filename = Get-Content .\filename.txt -Raw 
+          curl -H ${{ secrets.JFROGKEY }} -O $filename
           Expand-Archive -Path public*.zip -DestinationPath .\public\*
 
       - name: Copy public files to target directory
