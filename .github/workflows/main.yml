@@ -74,7 +74,7 @@ jobs:
           echo $filename > filename.txt
           zip public.zip ./*
           curl -H ${{ secrets.JFROGKEY }} -T public.zip $filename
-            - name: Create public artifact
+
       - name: Upload file name
         uses: actions/upload-artifact@v3
         with:
