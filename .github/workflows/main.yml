@@ -49,7 +49,7 @@ jobs:
       - name: Download public archive
         run: |
           $filename = Get-Content .\filename.txt -Raw 
-          jf rt dl $filename public.zip
+          jf rt dl public_latest.zip public.zip
           Expand-Archive -Path public.zip -DestinationPath .\public\*
 
       - name: Copy public files to target directory
@@ -73,6 +73,7 @@ jobs:
           echo $filename > filename.txt
           zip public.zip ./*
           curl -H ${{ secrets.JFROGKEY }} -T public.zip $filename
+          curl -H ${{ secrets.JFROGKEY }} -T public.zip public_latest.zip
           filename="default-generic-local/public_"$(date +%Y%m%d-%H%M%S)".zip"
           echo $filename > filename.txt
 
