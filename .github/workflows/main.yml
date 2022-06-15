@@ -40,15 +40,9 @@ jobs:
     steps:
       - name: Stop iis
         run: iisreset /stop
-
-      - name: Download the public folder
-        uses: actions/download-artifact@v3
-        with:
-          name: filename_str  
       
       - name: Download public archive
         run: |
-          $filename = Get-Content .\filename.txt -Raw 
           jf rt dl public_latest.zip public.zip
           Expand-Archive -Path public.zip -DestinationPath .\public\*
 
@@ -70,6 +64,7 @@ jobs:
       - name: publish to artifactory
         run: |
           filename="https://gerardtorres.jfrog.io/artifactory/default-generic-local/public_"$(date +%Y%m%d-%H%M%S)".zip"
+          filename="https://gerardtorres.jfrog.io/artifactory/default-generic-local/public_latest.zip"
           echo $filename > filename.txt
           zip public.zip ./*
           curl -H ${{ secrets.JFROGKEY }} -T public.zip $filename
