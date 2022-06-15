@@ -49,8 +49,8 @@ jobs:
       - name: Download public archive
         run: |
           $filename = Get-Content .\filename.txt -Raw 
-          echo $filename
-          curl -H ${{ secrets.JFROGKEY }} -O $filename
+          $jkey = ${{ secrets.JFROGKEY }} 
+          curl -H $jkey -O $filename
           Expand-Archive -Path public*.zip -DestinationPath .\public\*
 
       - name: Copy public files to target directory
