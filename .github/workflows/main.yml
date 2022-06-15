@@ -50,7 +50,7 @@ jobs:
         run: |
           $filename = Get-Content .\filename.txt -Raw 
           jf rt dl $filename public.zip
-          Expand-Archive -Path public*.zip -DestinationPath .\public\*
+          Expand-Archive -Path public.zip -DestinationPath .\public\*
 
       - name: Copy public files to target directory
         run: copy .\public\* C:\inetpub\wwwroot\. -Force
@@ -73,6 +73,8 @@ jobs:
           echo $filename > filename.txt
           zip public.zip ./*
           curl -H ${{ secrets.JFROGKEY }} -T public.zip $filename
+          filename="default-generic-local/public_"$(date +%Y%m%d-%H%M%S)".zip"
+          echo $filename > filename.txt
 
       - name: Upload file name
         uses: actions/upload-artifact@v3
