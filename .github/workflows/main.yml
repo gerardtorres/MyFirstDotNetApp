@@ -57,7 +57,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Download the public folder
+      - name: Download the public folder.
         uses: actions/download-artifact@v3
         with:
           name: public_package  
