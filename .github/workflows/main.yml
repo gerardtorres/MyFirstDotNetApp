@@ -64,11 +64,11 @@ jobs:
       - name: publish to artifactory
         run: |
           filename="https://gerardtorres.jfrog.io/artifactory/default-generic-local/public_"$(date +%Y%m%d-%H%M%S)".zip"
-          filename="https://gerardtorres.jfrog.io/artifactory/default-generic-local/public_latest.zip"
+          filename2="https://gerardtorres.jfrog.io/artifactory/default-generic-local/public_latest.zip"
           echo $filename > filename.txt
           zip public.zip ./*
           curl -H ${{ secrets.JFROGKEY }} -T public.zip $filename
-          curl -H ${{ secrets.JFROGKEY }} -T public.zip public_latest.zip
+          curl -H ${{ secrets.JFROGKEY }} -T public.zip filename2
           filename="default-generic-local/public_"$(date +%Y%m%d-%H%M%S)".zip"
           echo $filename > filename.txt
 
