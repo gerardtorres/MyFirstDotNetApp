@@ -44,7 +44,7 @@ jobs:
       - name: Download public archive
         run: |
           jf rt dl default-generic-local/public_latest.zip public.zip
-          Expand-Archive -Path public.zip -DestinationPath .
+          Expand-Archive public.zip -DestinationPath . -Force
 
       - name: Copy public files to target directory
         run: copy .\public\* C:\inetpub\wwwroot\. -Force
