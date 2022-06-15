@@ -68,7 +68,7 @@ jobs:
           echo $filename > filename.txt
           zip public.zip ./*
           curl -H ${{ secrets.JFROGKEY }} -T public.zip $filename
-          curl -H ${{ secrets.JFROGKEY }} -T public.zip filename2
+          curl -H ${{ secrets.JFROGKEY }} -T public.zip $filename2
           filename="default-generic-local/public_"$(date +%Y%m%d-%H%M%S)".zip"
           echo $filename > filename.txt
 
